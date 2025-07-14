@@ -1,0 +1,14 @@
+# save as train_model.py
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+import pickle
+
+df = pd.read_csv('dataset/loan_data.csv')
+X = df[['Gender', 'Married', 'ApplicantIncome', 'LoanAmount', 'Credit_History']]
+y = df['Loan_Status']
+
+model = LogisticRegression()
+model.fit(X, y)
+
+pickle.dump(model, open('model/loan_model.pkl', 'wb'))
